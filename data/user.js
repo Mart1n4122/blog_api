@@ -10,9 +10,21 @@ db.prepare(
 ).run();
 
 const defaultUsers = [
-  { name: "John Doe", email: "john@example.com", password: "password123" },
-  { name: "Jane Smith", email: "jane@example.com", password: "securepass" },
-  { name: "Alice Johnson", email: "alice@example.com", password: "alicepass" },
+  {
+    name: "Tóthmihály Martin",
+    email: "b1totmar@vasvari.org",
+    password: "jelszomvan123",
+  },
+  {
+    name: "Ferencváros hivatalos",
+    email: "ferencvarosgol@gmail.com",
+    password: "securepass",
+  },
+  {
+    name: "Szeged365",
+    email: "szeged365@gmail.hu",
+    password: "hajraszegediek",
+  },
 ];
 
 defaultUsers.forEach((user) => {

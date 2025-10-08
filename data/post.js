@@ -11,9 +11,21 @@ db.prepare(
 ).run();
 
 const defaultPosts = [
-  { userId: 1, title: "First Post", content: "This is the first post content." },
-  { userId: 2, title: "Second Post", content: "This is the second post content." },
-  { userId: 3, title: "Third Post", content: "This is the third post content." },
+  {
+    userId: 1,
+    title: "Martin első posztja",
+    content: "Hogyan játszunk lolt 2025-ben",
+  },
+  {
+    userId: 2,
+    title: "Hajrá Fradi",
+    content: "Megnyerte első idegenbeli meccsét a fradi",
+  },
+  {
+    userId: 3,
+    title: "Szétesett az ablak",
+    content: "Leesett a harmadikról és széttört az ablak",
+  },
 ];
 
 defaultPosts.forEach((post) => {
