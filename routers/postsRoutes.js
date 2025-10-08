@@ -1,5 +1,4 @@
 import express from "express";
-import * as Post from "../data/post.js";
 import db from "../data/db.js";
 
 const router = express.Router();
