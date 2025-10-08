@@ -4,13 +4,11 @@ import db from "../data/db.js";
 
 const router = express.Router();
 
-// GET összes post
 router.get("/", (req, res) => {
   const posts = db.prepare("SELECT * FROM posts").all();
   res.json(posts);
 });
 
-// GET egy post id alapján
 router.get("/:id", (req, res) => {
   const post = db
     .prepare("SELECT * FROM posts WHERE id = ?")
@@ -19,7 +17,6 @@ router.get("/:id", (req, res) => {
   res.json(post);
 });
 
-// POST új post
 router.post("/", (req, res) => {
   const { userId, title, content } = req.body;
   if (!userId || !title || !content)
@@ -33,7 +30,6 @@ router.post("/", (req, res) => {
   res.status(201).json(post);
 });
 
-// PUT post módosítása
 router.put("/:id", (req, res) => {
   const { title, content } = req.body;
   const info = db
@@ -47,7 +43,6 @@ router.put("/:id", (req, res) => {
   res.json(post);
 });
 
-// DELETE post
 router.delete("/:id", (req, res) => {
   const info = db.prepare("DELETE FROM posts WHERE id = ?").run(req.params.id);
   if (info.changes === 0)
