@@ -4,7 +4,7 @@ db.prepare(
   `CREATE TABLE IF NOT EXISTS users(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT,
-    email TEXT,
+    email TEXT UNIQUE,
     password TEXT
     )`
 ).run();
@@ -16,7 +16,13 @@ const defaultUsers = [
 ];
 
 defaultUsers.forEach((user) => {
-  db.prepare(
-    "INSERT INTO users (name, email, password) VALUES (?, ?, ?)"
-  ).run(user.name, user.email, user.password);
+  const exists = db
+    .prepare("SELECT 1 FROM users WHERE email = ?")
+    .get(user.email);
+
+  if (!exists) {
+    db.prepare(
+      "INSERT INTO users (name, email, password) VALUES (?, ?, ?)"
+    ).run(user.name, user.email, user.password);
+  }
 });

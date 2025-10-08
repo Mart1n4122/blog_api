@@ -17,7 +17,15 @@ const defaultPosts = [
 ];
 
 defaultPosts.forEach((post) => {
-  db.prepare(
-    "INSERT INTO posts (userId, title, content) VALUES (?, ?, ?)"
-  ).run(post.userId, post.title, post.content);
+  const exists = db
+    .prepare(
+      "SELECT 1 FROM posts WHERE userId = ? AND title = ? AND content = ?"
+    )
+    .get(post.userId, post.title, post.content);
+
+  if (!exists) {
+    db.prepare(
+      "INSERT INTO posts (userId, title, content) VALUES (?, ?, ?)"
+    ).run(post.userId, post.title, post.content);
+  }
 });
